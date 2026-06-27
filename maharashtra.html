@@ -2,75 +2,41 @@
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>महाराष्ट्र स्तर - संघटनात्मक डॅशबोर्ड</title>
+    <title>महाराष्ट्र राज्य - शिवमल्हार स्वराज्य</title>
     <style>
-        body { font-family: sans-serif; background-color: #fdf5e6; padding: 15px; }
-        .header { background: orange; color: white; padding: 15px; text-align: center; border-radius: 10px; margin-bottom: 20px; }
-        
-        /* मुख्य प्रतिष्ठान */
-        .main-org { background: #fff3cd; border: 2px solid orange; padding: 15px; border-radius: 15px; margin-bottom: 25px; }
-        .main-org h2 { color: #d35400; text-align: center; margin-top: 0; }
-        
-        .accordion { background: white; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; }
-        .accordion-header { padding: 12px; background: #fff8ee; cursor: pointer; font-weight: bold; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-        .accordion-content { padding: 10px; display: none; font-size: 0.9rem; }
-        .post { margin: 4px 0; padding: 4px; border-bottom: 1px dotted #ccc; }
+        .container { display: flex; flex-wrap: wrap; gap: 15px; padding: 20px; justify-content: center; }
+        .card { width: 300px; border: 2px solid #ff9900; padding: 20px; border-radius: 10px; background: #fff8e1; }
+        h2 { color: #b71c1c; text-align: center; }
+        .pad-list { list-style: none; padding: 0; }
+        .pad-list li { padding: 8px; border-bottom: 1px solid #ccc; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="header"><h1>महाराष्ट्र स्तर - संघटना</h1></div>
-
-<!-- मुख्य प्रतिष्ठान -->
-<div class="main-org">
-    <h2>🚩 श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h2>
-    <div class="post"><b>१. अध्यक्ष:</b> [नाव]</div>
-    <div class="post"><b>२. उपाध्यक्ष:</b> [नाव]</div>
-    <div class="post"><b>३. सचिव:</b> [नाव]</div>
-    <div class="post"><b>४. उपसचिव:</b> [नाव]</div>
-    <div class="post"><b>५. शाखाप्रमुख:</b> [नाव]</div>
-    <div class="post"><b>६. शाखाउपप्रमुख:</b> [नाव]</div>
-    <div class="post"><b>७. कार्याध्यक्ष:</b> [नाव]</div>
-    <div class="post"><b>८. कार्याउपाध्यक्ष:</b> [नाव]</div>
-    <div class="post"><b>९. सभासद:</b> [नाव]</div>
-    <div class="post"><b>१०. उपसभासद:</b> [नाव]</div>
-</div>
-
-<h3>इतर अंतर्गत प्रतिष्ठान:</h3>
-
-<!-- १० प्रतिष्ठानचे ब्लॉक्स -->
-<script>
-    const orgs = [
-        "विद्यार्थी", "कन्या", "महिला", "शेतकरी", "कामगार", 
-        "आरोग्य", "परिवहन", "उद्योजक", "क्रीडा"
-    ];
-
-    orgs.forEach(name => {
-        document.write(`
-            <div class="accordion">
-                <div class="accordion-header" onclick="toggle(this)">श्री शिवमल्हार ${name} स्वराज्य प्रतिष्ठान <span>▼</span></div>
-                <div class="accordion-content">
-                    <div class="post">१. अध्यक्ष: [नाव]</div>
-                    <div class="post">२. उपाध्यक्ष: [नाव]</div>
-                    <div class="post">३. सचिव: [नाव]</div>
-                    <div class="post">४. उपसचिव: [नाव]</div>
-                    <div class="post">५. शाखाप्रमुख: [नाव]</div>
-                    <div class="post">६. शाखाउपप्रमुख: [नाव]</div>
-                    <div class="post">७. कार्याध्यक्ष: [नाव]</div>
-                    <div class="post">८. कार्याउपाध्यक्ष: [नाव]</div>
-                    <div class="post">९. सभासद: [नाव]</div>
-                    <div class="post">१०. उपसभासद: [नाव]</div>
-                </div>
-            </div>
-        `);
-    });
-
-    function toggle(el) {
-        let content = el.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
-    }
-</script>
+    <h2>महाराष्ट्र राज्य - मुख्य कार्यकारिणी</h2>
+    <div class="container">
+        <!-- मुख्य प्रतिष्ठान कार्ड -->
+        <div class="card">
+            <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+            <ul class="pad-list">
+                <li>अध्यक्ष</li>
+                <li>उपाध्यक्ष</li>
+                <li>सचिव</li>
+                <li>उपसचिव</li>
+                <li>शाखाप्रमुख</li>
+                <li>शाखाउपप्रमुख</li>
+                <li>कार्याध्यक्ष</li>
+                <li>कार्याउपाध्यक्ष</li>
+                <li>सभासद</li>
+                <li>उपसभासद</li>
+            </ul>
+        </div>
+        <!-- तुम्ही इथे इतर प्रतिष्ठानची कार्डे वाढवू शकता -->
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html" class="btn">🏠 मुख्य डॅशबोर्डवर परत जा</a>
+    </div>
 
 </body>
 </html>

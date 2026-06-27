@@ -10,12 +10,11 @@
         body { font-family: sans-serif; text-align: center; background-color: #fdf5e6; margin: 0; }
         .header { background-color: orange; padding: 20px; color: white; }
         
-        /* लोगो आयताकृती करण्यासाठी खालील बदल केले आहेत */
         .logo { 
-            width: 200px;           /* रुंदी वाढवली */
-            height: 120px;          /* उंची कमी केली (आयताकृती लूकसाठी) */
-            object-fit: contain;    /* फोटो न कापला जाता व्यवस्थित दिसेल */
-            border-radius: 0;       /* कोपरे चौकोनी */
+            width: 200px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 0;
             margin-bottom: 10px; 
             display: block; 
             margin-left: auto; 
@@ -39,5 +38,14 @@
     <a href="siddhivinayak.html" class="btn">सिद्धिविनायक (Siddhivinayak)</a>
     <a href="candidate.html" class="btn">उमेदवार (Candidate)</a>
     <a href="admin.html" class="btn">प्रशासक (Admin)</a>
+
+    <!-- Service Worker रजिस्टर करणारा कोड -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registered!'))
+        .catch(err => console.log('Service Worker registration failed:', err));
+      }
+    </script>
 </body>
 </html>

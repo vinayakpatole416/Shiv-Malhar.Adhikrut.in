@@ -1,0 +1,20 @@
+{
+  "name": "श्री शिवमल्हार स्वराज्य प्रतिष्ठान",
+  "short_name": "शिवमल्हार",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fdf5e6",
+  "theme_color": "orange",
+  "icons": [
+    {
+      "src": "InShot_20260620_172115382.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "InShot_20260620_172115382.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

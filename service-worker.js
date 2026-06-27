@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shivmalhar-v1';
+const CACHE_NAME = 'shivmalhar-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -8,7 +8,7 @@ const urlsToCache = [
   '/siddhivinayak.html',
   '/candidate.html',
   '/admin.html',
-  '/InShot_20260620_172115382.jpg'
+  '/38259_2.jpg'
 ];
 
 self.addEventListener('install', event => {

@@ -14,8 +14,11 @@
         .btn { display: block; width: 85%; margin: 8px auto; padding: 15px; background: white; border-radius: 15px; text-decoration: none; color: #333; font-weight: bold; border: 2px solid orange; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn:hover { background: orange; color: white; }
         
-        /* स्तरांच्या बटणांसाठी वेगळा विभाग */
-        .level-section { margin-top: 25px; border-top: 2px solid orange; padding-top: 20px; }
+        /* भौगोलिक विस्तार स्तर विभाग */
+        .level-section { margin-top: 25px; padding: 15px; }
+        .expansion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .expansion-grid .btn { width: 90%; margin: 0; font-size: 0.85rem; padding: 12px 5px; }
+        h3 { background: #333; color: white; padding: 10px; border-radius: 8px; margin: 10px; }
     </style>
 </head>
 <body>
@@ -25,7 +28,6 @@
     </div>
 
     <div class="btn-container">
-        <!-- मूळ बटणे -->
         <a href="trust.html" class="btn">विश्वास (Trust)</a>
         <a href="society.html" class="btn">संस्था (Society)</a>
         <a href="gramseva.html" class="btn">ग्रामसेवा (Gramseva)</a>
@@ -33,16 +35,20 @@
         <a href="candidate.html" class="btn">उमेदवार (Candidate)</a>
         <a href="admin.html" class="btn">प्रशासक (Admin)</a>
 
-        <!-- नवीन स्तर बटणे -->
         <div class="level-section">
-            <h3>संघटनात्मक स्तर</h3>
-            <a href="maharashtra.html" class="btn">🌍 महाराष्ट्र राज्य</a>
-            <a href="vibhag.html" class="btn">🏢 विभाग स्तर</a>
-            <a href="zilha.html" class="btn">📍 जिल्हा स्तर</a>
-            <a href="taluka.html" class="btn">🗺️ तालुका स्तर</a>
-            <a href="mahapaur.html" class="btn">🎖️ महापालिका स्तर</a>
-            <a href="nagar.html" class="btn">🏙️ नगर स्तर</a>
-            <a href="gram.html" class="btn">🏡 ग्राम स्तर</a>
+            <h3>१. भौगोलिक विस्तार स्तर (Expansion Levels)</h3>
+            <div class="expansion-grid">
+                <a href="maharashtra.html" class="btn">🌍 महाराष्ट्र</a>
+                <a href="vibhag.html" class="btn">🏢 विभाग</a>
+                <a href="zilha.html" class="btn">📍 जिल्हा</a>
+                <a href="taluka.html" class="btn">🗺️ तालुका</a>
+                <a href="mahapaur.html" class="btn">🎖️ महापौर</a>
+                <a href="nagar.html" class="btn">🏙️ नगर</a>
+                <a href="gram.html" class="btn">🏡 ग्राम</a>
+                <a href="#" class="btn" style="background:#f1c40f;">➕ नवीन</a>
+                <a href="#" class="btn">🗺️ मॅपिंग</a>
+                <a href="#" class="btn">📊 अहवाल</a>
+            </div>
         </div>
     </div>
 

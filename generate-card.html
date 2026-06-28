@@ -2,23 +2,34 @@
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <title>ई-डिजिटल स्मार्ट कार्ड</title>
+    <title>ई-डिजिटल स्मार्ट कार्ड | श्री शिवमल्हार</title>
     <style>
-        body { font-family: sans-serif; background: #fdf5e6; padding: 10px; }
-        .form-box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-        .card { width: 320px; padding: 20px; border: 3px solid #8e44ad; border-radius: 15px; margin: 20px auto; background: white; text-align: center; }
-        input { width: 90%; padding: 8px; margin: 5px 0; }
+        body { font-family: sans-serif; background: #fdf5e6; padding: 20px; text-align: center; }
+        .form-box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
+        
+        /* स्मार्ट कार्ड डिझाइन */
+        .card { width: 350px; padding: 20px; border: 4px solid #8e44ad; border-radius: 15px; margin: 30px auto; background: #fff; text-align: left; position: relative; }
+        .card-header { text-align: center; font-weight: bold; color: #8e44ad; font-size: 18px; margin-bottom: 10px; }
+        .card img.profile { width: 90px; height: 90px; border-radius: 10px; display: block; margin: 0 auto 10px; border: 2px solid #8e44ad; }
+        .card p { margin: 5px 0; font-size: 14px; }
+        .status-badge { background: #8e44ad; color: white; padding: 5px; text-align: center; font-weight: bold; margin: 10px 0; }
     </style>
 </head>
 <body>
+
     <div class="form-box">
-        <h2>कार्डसाठी माहिती भरा</h2>
+        <h2>स्मार्ट कार्ड माहिती</h2>
         <input type="text" id="name" placeholder="पूर्ण नाव">
-        <input type="date" id="regDate">
+        <input type="number" id="age" placeholder="वय">
+        <input type="date" id="regDate" title="नोंदणी तारीख">
         <input type="text" id="village" placeholder="गाव">
-        <input type="text" id="constituency" placeholder="लोकसभा/विधानसभा">
+        <input type="text" id="constituency" placeholder="लोकसभा/विधानसभा क्षेत्र">
+        <input type="text" id="state" placeholder="राज्य">
+        <input type="text" id="lang" placeholder="मातृभाषा">
+        <input type="text" id="cNo" placeholder="उमेदवार क्रमांक">
         <input type="file" id="photoInput" accept="image/*">
-        <button onclick="generateCard()" style="width: 100%; padding: 10px; background: #8e44ad; color: white;">कार्ड तयार करा</button>
+        <button onclick="generateCard()" style="width: 95%; padding: 12px; background: #8e44ad; color: white; border: none; cursor: pointer; border-radius: 5px;">कार्ड जनरेट करा</button>
     </div>
 
     <div id="result"></div>
@@ -27,29 +38,33 @@
         function generateCard() {
             const name = document.getElementById('name').value;
             const regDate = new Date(document.getElementById('regDate').value);
-            const village = document.getElementById('village').value;
-            const constituency = document.getElementById('constituency').value;
+            const status = ((new Date() - regDate) / (1000 * 3600 * 24) >= 730) ? "सदस्य" : "उपसदस्य";
             
-            const diffInDays = (new Date() - regDate) / (1000 * 3600 * 24);
-            const status = (diffInDays >= 730) ? "सदस्य" : "उपसदस्य";
-
             const photo = document.getElementById('photoInput').files[0];
             const reader = new FileReader();
             
             reader.onload = function(e) {
                 document.getElementById('result').innerHTML = `
                     <div class="card">
-                        <div style="color: #8e44ad; font-weight: bold;">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</div>
-                        <img src="${e.target.result}" style="width:100px; height:100px; border-radius:50%; margin:10px;">
+                        <div class="card-header">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</div>
+                        <img src="${e.target.result}" class="profile">
+                        <div class="status-badge">${status}</div>
                         <p><strong>नाव:</strong> ${name}</p>
-                        <p><strong>दर्जा:</strong> ${status}</p>
-                        <p>गाव: ${village} | ${constituency}</p>
-                        <p>स्थापक: मा. श्री. विनायक पाटोळे</p>
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${name}" style="margin-top:10px;">
+                        <p><strong>वय:</strong> ${document.getElementById('age').value}</p>
+                        <p><strong>गाव:</strong> ${document.getElementById('village').value}</p>
+                        <p><strong>क्षेत्र:</strong> ${document.getElementById('constituency').value}</p>
+                        <p><strong>राज्य:</strong> ${document.getElementById('state').value} | <strong>भाषा:</strong> ${document.getElementById('lang').value}</p>
+                        <p><strong>उमेदवार क्र.:</strong> ${document.getElementById('cNo').value}</p>
+                        <hr>
+                        <p style="text-align:center; font-size:12px;">संस्थापक: मा. श्री. विनायक पाटोळे</p>
+                        <div style="text-align:center;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${name}" alt="QR">
+                        </div>
                     </div>
                 `;
             }
             if(photo) reader.readAsDataURL(photo);
+            else alert("कृपया फोटो निवडा!");
         }
     </script>
 </body>

@@ -2,31 +2,27 @@
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - नोंदणी</title>
+    <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</title>
     <style>
         body { font-family: sans-serif; background-color: #fdf5e6; padding: 20px; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #8e44ad; border-radius: 6px; font-size: 16px; }
-        button { width: 100%; padding: 12px; background-color: #8e44ad; color: white; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; margin-top: 15px; }
-        button:hover { background-color: #732d91; }
-        h2 { text-align: center; color: #8e44ad; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #8e44ad; border-radius: 5px; font-size: 16px; }
+        .wing-box { margin-top: 15px; border: 1px solid #8e44ad; padding: 10px; border-radius: 5px; }
+        .wing-title { background: #8e44ad; color: white; padding: 8px; font-weight: bold; border-radius: 3px; }
+        .post-item { display: flex; justify-content: space-between; padding: 5px; border-bottom: 1px solid #eee; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>पदाधिकारी नोंदणी फॉर्म</h2>
+    <h2>पदाधिकारी निवड</h2>
     
+    <!-- ३ मुख्य बटणे -->
     <select id="distSelect"><option value="">-- जिल्हा निवडा --</option></select>
-    <select id="talukaSelect"><option value="">-- प्रथम जिल्हा निवडा --</option></select>
-    <select id="gpSelect"><option value="">-- प्रथम तालुका निवडा --</option></select>
+    <select id="talukaSelect"><option value="">-- तालुका निवडा --</option></select>
+    <select id="gpSelect" onchange="renderWings()"><option value="">-- ग्रामपंचायत निवडा --</option></select>
 
-    <hr style="margin: 20px 0;">
-
-    <select id="orgTypeSelect"><option value="">-- संघटना प्रकार निवडा --</option></select>
-    <select id="positionSelect"><option value="">-- प्रथम संघटना निवडा --</option></select>
-
-    <button type="button" onclick="submitForm()">नोंदणी करा</button>
+    <div id="wingContainer"></div>
 </div>
 
 <script>
@@ -49,7 +45,7 @@
         "कोल्हापूर": ["आजरा", "भुदरगड", "चंदगड", "गडहिंग्लज", "हातकणंगले", "कागल", "करवीर", "पन्हाळा", "राधानगरी", "शाहूवाडी", "शिरोळ"],
         "लातूर": ["अहमदपूर", "औसा", "चाकूर", "देवणी", "लातूर", "निलंगा", "रेणापूर", "शिरूर अनंतपाळ", "उदगीर"],
         "मुंबई शहर": ["मुंबई शहर"],
-        "मुंबई उपनगर": ["कुर्ला", "अंधेरी", "bोरिवली"],
+        "मुंबई उपनगर": ["कुर्ला", "अंधेरी", "बोरिवली"],
         "नागपूर": ["हिंगणा", "कामठी", "काटोल", "कुही", "मौदा", "नागपूर ग्रामीण", "नरखेड", "पारशिवनी", "रामटेक", "सावनेर", "उमरेड"],
         "नांदेड": ["अर्धापूर", "भोकर", "बिलोली", "देगलूर", "धर्माबाद", "हदगाव", "हिमायतनगर", "कंधार", "किनवट", "लोहा", "माहूर", "मुदखेड", "मुखेड", "नांदेड", "उमरी"],
         "नंदुरबार": ["अक्कलकुवा", "अक्राणी", "नंदुरबार", "नवापूर", "शहादा", "तळोदा"],
@@ -70,7 +66,7 @@
         "यवतमाळ": ["बाभूळगाव", "दारव्हा", "दिग्रस", "घाटंजी", "कळंब", "केळापूर", "महागाव", "मारेगाव", "नेर", "पुसद", "राळेगाव", "उमरखेड", "वणी", "यवतमाळ", "झरी जामणी"]
     };
 
-    const gpData = { "कवठे महांकाळ": ["अणगळगाव", "अळकुड", "आरेवाडी", "बोरगाव", "ढालगाव", "कुची", "शिवमल्हार स्वराज्यवाडी"] };
+    const gpData = { "कवठे महांकाळ": ["अणगळगाव", "अळकुड", "अळकुड (स)", "आरेवाडी", "बाणेवाडी", "बासप्पावाडी", "बोरगाव", "चोरोची", "चुडेखिंडी", "ढेशिंग", "ढळेवाडी", "ढालगाव", "ढोलेवाडी", "धुळगाव", "दुधेभावी", "गर्जेवाडी", "घाटणंद्रे", "घोरपडी", "हरोली", "हिंगणगाव", "इराळी", "जाधववाडी", "जाखापूर", "जांभूळवाडी", "जयगव्हाण", "कदमवाडी", "कारलहट्टी", "शिवमल्हार स्वराज्यवाडी", "कवठे महांकाळ", "केरेवाडी", "खरशिंग", "कोग्नोळी", "कोकळे", "कुची", "कुकटोळी", "कुंडलापूर", "लांडगेवाडी", "लांगरपेठ", "लोणारवाडी", "मळणगाव", "म्हैसाळ", "मोघमवाडी", "मोरगाव", "नगाव", "नांगोळे", "निमज", "पिंपळवाडी", "रामपूरवाडी", "रंजनी", "रायवाडी", "सारती", "शेळकेवाडी", "शिंदेवाडी (१)", "शिंदेवाडी (२)", "शिरढोण", "थाबडेवाडी", "तिसंगी", "विठुरायाची वाडी", "वाघोली", "झुरेवाडी"] };
     
     const organizationStructure = {
         "श्री शिवमल्हार स्वराज्य प्रतिष्ठान - Main": ["अध्यक्ष", "उपाध्यक्ष", "सचिव", "उपसचिव", "शाखाप्रमुख", "शाखाउपप्रमुख", "कार्याध्यक्ष", "कार्याउपाध्यक्ष", "सभासद", "उपसभासद"],
@@ -85,33 +81,35 @@
         "श्री शिवमल्हार क्रीडा स्वराज्य प्रतिष्ठान": ["अध्यक्ष", "उपाध्यक्ष", "सचिव", "उपसचिव", "शाखाप्रमुख", "शाखाउपप्रमुख", "कार्याध्यक्ष", "कार्याउपाध्यक्ष", "सभासद", "उपसभासद"]
     };
 
-    // DOM आणि Events
+    // लॉजिक
     const distSelect = document.getElementById('distSelect');
-    const talukaSelect = document.getElementById('talukaSelect');
-    const gpSelect = document.getElementById('gpSelect');
-    const orgTypeSelect = document.getElementById('orgTypeSelect');
-    const positionSelect = document.getElementById('positionSelect');
-
     Object.keys(masterData).forEach(d => distSelect.add(new Option(d, d)));
-    Object.keys(organizationStructure).forEach(o => orgTypeSelect.add(new Option(o, o)));
 
-    distSelect.addEventListener('change', () => {
-        talukaSelect.innerHTML = '<option value="">-- तालुका निवडा --</option>';
-        if(masterData[distSelect.value]) masterData[distSelect.value].forEach(t => talukaSelect.add(new Option(t, t)));
-    });
+    distSelect.onchange = () => {
+        let t = document.getElementById('talukaSelect');
+        t.innerHTML = '<option value="">-- तालुका निवडा --</option>';
+        masterData[distSelect.value].forEach(val => t.add(new Option(val, val)));
+    };
 
-    talukaSelect.addEventListener('change', () => {
-        gpSelect.innerHTML = '<option value="">-- ग्रामपंचायत निवडा --</option>';
-        if(gpData[talukaSelect.value]) gpData[talukaSelect.value].forEach(g => gpSelect.add(new Option(g, g)));
-    });
+    document.getElementById('talukaSelect').onchange = function() {
+        let g = document.getElementById('gpSelect');
+        g.innerHTML = '<option value="">-- ग्रामपंचायत निवडा --</option>';
+        if(gpData[this.value]) gpData[this.value].forEach(val => g.add(new Option(val, val)));
+    };
 
-    orgTypeSelect.addEventListener('change', () => {
-        positionSelect.innerHTML = '<option value="">-- पद निवडा --</option>';
-        if(organizationStructure[orgTypeSelect.value]) organizationStructure[orgTypeSelect.value].forEach(p => positionSelect.add(new Option(p, p)));
-    });
-
-    function submitForm() {
-        alert("तुमची नोंदणी यशस्वी झाली!");
+    function renderWings() {
+        const container = document.getElementById('wingContainer');
+        if(!document.getElementById('gpSelect').value) { container.innerHTML = ""; return; }
+        
+        let html = "";
+        Object.keys(organizationStructure).forEach(wing => {
+            html += `<div class="wing-box"><div class="wing-title">${wing}</div>`;
+            organizationStructure[wing].forEach(post => {
+                html += `<div class="post-item"><span>${post}</span><input type="text" placeholder="नाव लिहा..."></div>`;
+            });
+            html += `</div>`;
+        });
+        container.innerHTML = html;
     }
 </script>
 

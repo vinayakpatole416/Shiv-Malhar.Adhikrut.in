@@ -7,20 +7,28 @@
     <style>
         body { font-family: sans-serif; background: #fdf5e6; padding: 20px; text-align: center; }
         .form-box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 15px; }
-        input { width: 90%; padding: 10px; margin: 5px 0; }
+        input, select { width: 90%; padding: 10px; margin: 5px 0; }
         .card { width: 350px; padding: 20px; border: 4px solid #8e44ad; border-radius: 15px; margin: 20px auto; background: white; text-align: left; }
+        .footer-name { text-align: center; font-weight: bold; margin-top: 15px; border-top: 1px solid #ccc; padding-top: 5px; color: #8e44ad; }
     </style>
 </head>
 <body>
 
     <div class="form-box">
         <h2>स्मार्ट कार्ड माहिती</h2>
-        <input type="text" id="name" placeholder="पूर्ण नाव">
-        <input type="date" id="dob" onchange="calculateAge()">
+        <input type="text" id="name" placeholder="पूर्ण नाव"><br>
+        <input type="date" id="dob" onchange="calculateAge()"><br>
         <p>वय: <span id="ageDisplay">-</span></p>
-        <input type="text" id="lokSabha" placeholder="लोकसभा मतदारसंघ">
-        <input type="text" id="vidhanSabha" placeholder="विधानसभा मतदारसंघ">
-        <input type="file" id="photoInput" accept="image/*">
+        
+        <select id="lokSabha" onchange="updateVidhanSabha()">
+            <option value="">लोकसभा मतदारसंघ निवडा</option>
+            </select>
+        
+        <select id="vidhanSabha">
+            <option value="">प्रथम लोकसभा निवडा</option>
+        </select>
+        
+        <input type="file" id="photoInput" accept="image/*"><br>
         <button onclick="generateCard()" style="padding: 10px; background: #8e44ad; color: white;">कार्ड तयार करा</button>
     </div>
 
@@ -28,47 +36,94 @@
     <button id="pdfBtn" style="display:none; padding:10px; background:#27ae60; color:white;" onclick="downloadPDF()">PDF डाउनलोड करा</button>
 
     <script>
-        // १. वय मोजणे
-        function calculateAge() {
-            const dob = new Date(document.getElementById('dob').value);
-            const today = new Date();
-            let age = today.getFullYear() - dob.getFullYear();
-            document.getElementById('ageDisplay').innerText = age;
+        const constituencyData = {
+            "नंदुरबार": ["अक्कलकुवा", "शहादा", "नंदुरबार", "नवापूर"],
+            "धुळे": ["धुळे ग्रामीण", "धुळे शहर", "सिंधखेडा", "मालेगाव बाह्य", "मालेगाव मध्य", "बागलाण"],
+            "जळगाव": ["जळगाव ग्रामीण", "जळगाव शहर", "अमळनेर", "एरंडोल", "चाळीसगाव", "पाचोरा"],
+            "रावेर": ["चोपडा", "रावेर", "भुसावळ", "जामनेर", "मुक्ताईनगर", "मलकापूर"],
+            "बुलढाणा": ["बुलढाणा", "चिखली", "सिंदखेड राजा", "मेहकर", "खामगाव", "जळगाव जामोद"],
+            "अकोला": ["अकोला पश्चिम", "अकोला पूर्व", "अकोट", "बाळापूर", "मूर्तिजापूर", "रिसोड"],
+            "अमरावती": ["अमरावती", "बडनेरा", "तिवसा", "दर्यापूर", "मेळघाट", "अचलपूर"],
+            "वर्धा": ["वर्धा", "देवळी", "हिंगणघाट", "धामणगाव रेल्वे", "मोर्शी", "आर्वी"],
+            "रामटेक": ["रामटेक", "उमरेड", "कामठी", "हिंगणा", "सावनेर", "कटोल"],
+            "नागपूर": ["नागपूर दक्षिण", "नागपूर दक्षिण-पश्चिम", "नागपूर उत्तर", "नागपूर पूर्व", "नागपूर मध्य", "नागपूर पश्चिम"],
+            "भंडारा-गोंदिया": ["भंडारा", "गोंदिया", "तुमसर", "अर्जुनी मोरगाव", "साकोली", "तिरोडा"],
+            "गडचिरोली-चिमूर": ["गडचिरोली", "आरमोरी", "आहेरी", "चिमूर", "ब्रह्मपुरी", "राजुरा"],
+            "चंद्रपूर": ["चंद्रपूर", "बल्लारपूर", "वरोरा", "वणी", "आर्णी", "राजुरा"],
+            "यवतमाळ-वाशिम": ["यवतमाळ", "दिग्रस", "पुसद", "वाशिम", "कारंजा", "धामणगाव रेल्वे"],
+            "हिंगोली": ["हिंगोली", "कळमनुरी", "वसमत", "उमरखेड", "किनवट", "हदगाव"],
+            "नांदेड": ["नांदेड उत्तर", "नांदेड दक्षिण", "भोकर", "मुखेड", "देगलूर", "नायगाव"],
+            "परभणी": ["परभणी", "पाथरी", "परतूर", "गंगाखेड", "जिंतूर", "घनसावंगी"],
+            "जालना": ["जालना", "बदनापूर", "भोकरदन", "सिल्लोड", "फुलंब्री", "पैठण"],
+            "औरंगाबाद": ["औरंगाबाद मध्य", "औरंगाबाद पूर्व", "औरंगाबाद पश्चिम", "कन्नड", "वैजापूर", "गंगापूर"],
+            "दिंडोरी": ["दिंडोरी", "चांदवड", "येवला", "निफाड", "कळवण", "नांदगाव"],
+            "नाशिक": ["नाशिक पूर्व", "नाशिक मध्य", "नाशिक पश्चिम", "देवळाली", "इगतपुरी", "सिन्नर"],
+            "पालघर": ["पालघर", "बोईसर", "डहाणू", "विक्रमगड", "नालासोपारा", "वसई"],
+            "भिवंडी": ["भिवंडी ग्रामीण", "भिवंडी पूर्व", "भिवंडी पश्चिम", "कल्याण पश्चिम", "मुरबाड", "शहापूर"],
+            "कल्याण": ["कल्याण पूर्व", "डोंबिवली", "कल्याण ग्रामीण", "अंबरनाथ", "उल्हासनगर", "मुंब्रा-कळवा"],
+            "ठाणे": ["ठाणे", "कोपरी-पाचपाखाडी", "ओवळा-माजिवाडा", "मिरा-भाईंदर", "ऐरोली", "बेलापूर"],
+            "मुंबई उत्तर": ["बोरिवली", "दहिसर", "मागाठणे", "कांदिवली पूर्व", "चारकोप", "मालाड पश्चिम"],
+            "पुणे": ["वडगाव शेरी", "शिवाजीनगर", "कोथरूड", "खडकवासला", "पुणे कॅन्टोन्मेंट", "कसबा पेठ"],
+            "बारामती": ["दौंड", "इंदापूर", "बारामती", "पुरंदर", "भोर", "खडकवासला"],
+            "सातारा": ["सातारा", "वाई", "कोरेगाव", "कराड उत्तर", "कराड दक्षिण", "पाटण"],
+            "कोल्हापूर": ["कोल्हापूर उत्तर", "कोल्हापूर दक्षिण", "करवीर", "कागल", "राधानगरी", "चंदगड"],
+            "सांगली": ["सांगली", "मिरज", "पलूस-कडेगाव", "खानापूर", "तासगाव-कवठे महांकाळ", "जत"],
+            "सोलापूर": ["सोलापूर शहर उत्तर", "सोलापूर शहर मध्य", "सोलापूर दक्षिण", "अक्कलकोट", "पंढरपूर", "मोहोळ"]
+        };
+
+        // पेज लोड झाल्यावर लोकसभा ड्रॉपडाउन भरणे
+        window.onload = function() {
+            const lsSelect = document.getElementById('lokSabha');
+            Object.keys(constituencyData).forEach(ls => {
+                lsSelect.innerHTML += `<option value="${ls}">${ls}</option>`;
+            });
+        };
+
+        function updateVidhanSabha() {
+            const ls = document.getElementById('lokSabha').value;
+            const vsSelect = document.getElementById('vidhanSabha');
+            vsSelect.innerHTML = '<option value="">विधानसभा निवडा</option>';
+            if (constituencyData[ls]) {
+                constituencyData[ls].forEach(vs => vsSelect.innerHTML += `<option value="${vs}">${vs}</option>`);
+            }
         }
 
-        // २. कार्ड जनरेशन
+        function calculateAge() {
+            const dob = new Date(document.getElementById('dob').value);
+            document.getElementById('ageDisplay').innerText = new Date().getFullYear() - dob.getFullYear();
+        }
+
         function generateCard() {
             const name = document.getElementById('name').value;
-            const age = document.getElementById('ageDisplay').innerText;
             const ls = document.getElementById('lokSabha').value;
             const vs = document.getElementById('vidhanSabha').value;
-            const candNo = "SMS-" + Math.floor(1000 + Math.random() * 9000); // ऑटो उमेदवार क्र.
-
+            const candNo = "SMS-" + Math.floor(1000 + Math.random() * 9000);
             const photo = document.getElementById('photoInput').files[0];
             const reader = new FileReader();
             
             reader.onload = function(e) {
+                const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=" + encodeURIComponent(name);
                 document.getElementById('cardArea').innerHTML = `
                     <div class="card" id="cardContent">
-                        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
-                        <img src="${e.target.result}" style="width:80px;">
+                        <h3 style="text-align:center;">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+                        <img src="${e.target.result}" style="width:90px; border-radius:5px; display:block; margin:auto;">
                         <p><strong>नाव:</strong> ${name}</p>
-                        <p><strong>वय:</strong> ${age}</p>
+                        <p><strong>वय:</strong> ${document.getElementById('ageDisplay').innerText}</p>
                         <p><strong>लोकसभा:</strong> ${ls}</p>
                         <p><strong>विधानसभा:</strong> ${vs}</p>
                         <p><strong>उमेदवार क्र.:</strong> ${candNo}</p>
-                        <p>स्थापक: मा. श्री. विनायक पाटोळे</p>
+                        <div style="text-align:center;"><img src="${qrUrl}"></div>
+                        <div class="footer-name">संस्थापक/अध्यक्ष:<br>मा. श्री. विनायक पाटोळे</div>
                     </div>
                 `;
                 document.getElementById('pdfBtn').style.display = "inline-block";
             }
             if(photo) reader.readAsDataURL(photo);
+            else alert("कृपया फोटो निवडा!");
         }
 
-        // ३. पीडीएफ डाउनलोड
         function downloadPDF() {
-            const element = document.getElementById('cardContent');
-            html2pdf().from(element).save('Smart_Card.pdf');
+            html2pdf().from(document.getElementById('cardContent')).save('Shivamalhar_Card.pdf');
         }
     </script>
 </body>

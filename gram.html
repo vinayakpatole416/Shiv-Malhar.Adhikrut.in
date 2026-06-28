@@ -109,3 +109,62 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</title>
+    <style>
+        body { font-family: sans-serif; background-color: #fdf5e6; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #8e44ad; border-radius: 5px; }
+        .data-section { margin-top: 20px; padding: 15px; border-top: 2px solid #8e44ad; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>पदाधिकारी निवड प्रक्रिया</h2>
+    
+    <select id="district" onchange="updateLevels()">
+        <option value="">-- जिल्हा निवडा (३६ जिल्हे) --</option>
+        </select>
+
+    <select id="level" onchange="updateUnits()">
+        <option value="">-- स्तर निवडा --</option>
+        <option value="mnp">महानगरपालिका (२९)</option>
+        <option value="np">नगरपालिका (२४६)</option>
+        <option value="npanch">नगरपंचायत (१२५)</option>
+    </select>
+
+    <select id="unit" onchange="showPositions()">
+        <option value="">-- प्रभाग / नगरसेवक निवडा --</option>
+    </select>
+
+    <div id="result" class="data-section"></div>
+</div>
+
+<script>
+    // १० विभाग आणि १० पदे
+    const wings = ["मुख्य प्रतिष्ठान", "विद्यार्थी स्वराज्य", "कन्या स्वराज्य", "महिला स्वराज्य", "शेतकरी स्वराज्य", "कामगार स्वराज्य", "आरोग्य स्वराज्य", "परिवहन स्वराज्य", "उद्योजक स्वराज्य", "क्रीडा स्वराज्य"];
+    const posts = ["अध्यक्ष", "उपाध्यक्ष", "सचिव", "उपसचिव", "शाखाप्रमुख", "शाखाउपप्रमुख", "कार्याध्यक्ष", "कार्याउपाध्यक्ष", "सभासद", "उपसभासद"];
+
+    function showPositions() {
+        let container = document.getElementById('result');
+        let html = '<h3>पदाधिकारी भरती:</h3>';
+        
+        wings.forEach(wing => {
+            html += `<div style="background:#8e44ad; color:white; padding:5px; margin-top:10px;">${wing}</div>`;
+            posts.forEach(post => {
+                html += `<div style="display:flex; justify-content:space-between; border-bottom:1px solid #ccc; padding:5px;">
+                            <span>${post}</span>
+                            <input type="text" placeholder="नाव भरा">
+                         </div>`;
+            });
+        });
+        container.innerHTML = html;
+    }
+</script>
+</body>
+</html>

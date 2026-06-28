@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>ई-डिजिटल स्मार्ट कार्ड | श्री शिवमल्हार</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style>
         body { font-family: sans-serif; background: #fdf5e6; padding: 20px; text-align: center; }
-        .form-box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        input { width: 90%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
-        
-        /* स्मार्ट कार्ड डिझाइन */
-        .card { width: 350px; padding: 20px; border: 4px solid #8e44ad; border-radius: 15px; margin: 30px auto; background: #fff; text-align: left; position: relative; }
-        .card-header { text-align: center; font-weight: bold; color: #8e44ad; font-size: 18px; margin-bottom: 10px; }
-        .card img.profile { width: 90px; height: 90px; border-radius: 10px; display: block; margin: 0 auto 10px; border: 2px solid #8e44ad; }
-        .card p { margin: 5px 0; font-size: 14px; }
-        .status-badge { background: #8e44ad; color: white; padding: 5px; text-align: center; font-weight: bold; margin: 10px 0; }
+        .form-box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 15px; }
+        input { width: 90%; padding: 10px; margin: 5px 0; }
+        .card { width: 350px; padding: 20px; border: 4px solid #8e44ad; border-radius: 15px; margin: 20px auto; background: white; text-align: left; }
     </style>
 </head>
 <body>
@@ -21,51 +16,59 @@
     <div class="form-box">
         <h2>स्मार्ट कार्ड माहिती</h2>
         <input type="text" id="name" placeholder="पूर्ण नाव">
-        <input type="number" id="age" placeholder="वय">
-        <input type="date" id="regDate" title="नोंदणी तारीख">
-        <input type="text" id="village" placeholder="गाव">
-        <input type="text" id="constituency" placeholder="लोकसभा/विधानसभा क्षेत्र">
-        <input type="text" id="state" placeholder="राज्य">
-        <input type="text" id="lang" placeholder="मातृभाषा">
-        <input type="text" id="cNo" placeholder="उमेदवार क्रमांक">
+        <input type="date" id="dob" onchange="calculateAge()">
+        <p>वय: <span id="ageDisplay">-</span></p>
+        <input type="text" id="lokSabha" placeholder="लोकसभा मतदारसंघ">
+        <input type="text" id="vidhanSabha" placeholder="विधानसभा मतदारसंघ">
         <input type="file" id="photoInput" accept="image/*">
-        <button onclick="generateCard()" style="width: 95%; padding: 12px; background: #8e44ad; color: white; border: none; cursor: pointer; border-radius: 5px;">कार्ड जनरेट करा</button>
+        <button onclick="generateCard()" style="padding: 10px; background: #8e44ad; color: white;">कार्ड तयार करा</button>
     </div>
 
-    <div id="result"></div>
+    <div id="cardArea"></div>
+    <button id="pdfBtn" style="display:none; padding:10px; background:#27ae60; color:white;" onclick="downloadPDF()">PDF डाउनलोड करा</button>
 
     <script>
+        // १. वय मोजणे
+        function calculateAge() {
+            const dob = new Date(document.getElementById('dob').value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            document.getElementById('ageDisplay').innerText = age;
+        }
+
+        // २. कार्ड जनरेशन
         function generateCard() {
             const name = document.getElementById('name').value;
-            const regDate = new Date(document.getElementById('regDate').value);
-            // २ वर्षे (७३० दिवस) पूर्ण झाल्यास 'सदस्य', अन्यथा 'उपसदस्य'
-            const status = ((new Date() - regDate) / (1000 * 3600 * 24) >= 730) ? "सदस्य" : "उपसदस्य";
-            
+            const age = document.getElementById('ageDisplay').innerText;
+            const ls = document.getElementById('lokSabha').value;
+            const vs = document.getElementById('vidhanSabha').value;
+            const candNo = "SMS-" + Math.floor(1000 + Math.random() * 9000); // ऑटो उमेदवार क्र.
+
             const photo = document.getElementById('photoInput').files[0];
             const reader = new FileReader();
             
             reader.onload = function(e) {
-                document.getElementById('result').innerHTML = `
-                    <div class="card">
-                        <div class="card-header">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</div>
-                        <img src="${e.target.result}" class="profile">
-                        <div class="status-badge">${status}</div>
+                document.getElementById('cardArea').innerHTML = `
+                    <div class="card" id="cardContent">
+                        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+                        <img src="${e.target.result}" style="width:80px;">
                         <p><strong>नाव:</strong> ${name}</p>
-                        <p><strong>वय:</strong> ${document.getElementById('age').value}</p>
-                        <p><strong>गाव:</strong> ${document.getElementById('village').value}</p>
-                        <p><strong>क्षेत्र:</strong> ${document.getElementById('constituency').value}</p>
-                        <p><strong>राज्य:</strong> ${document.getElementById('state').value} | <strong>भाषा:</strong> ${document.getElementById('lang').value}</p>
-                        <p><strong>उमेदवार क्र.:</strong> ${document.getElementById('cNo').value}</p>
-                        <hr>
-                        <p style="text-align:center; font-size:12px;">संस्थापक: मा. श्री. विनायक पाटोळे</p>
-                        <div style="text-align:center;">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${name}" alt="QR">
-                        </div>
+                        <p><strong>वय:</strong> ${age}</p>
+                        <p><strong>लोकसभा:</strong> ${ls}</p>
+                        <p><strong>विधानसभा:</strong> ${vs}</p>
+                        <p><strong>उमेदवार क्र.:</strong> ${candNo}</p>
+                        <p>स्थापक: मा. श्री. विनायक पाटोळे</p>
                     </div>
                 `;
+                document.getElementById('pdfBtn').style.display = "inline-block";
             }
             if(photo) reader.readAsDataURL(photo);
-            else alert("कृपया फोटो निवडा!");
+        }
+
+        // ३. पीडीएफ डाउनलोड
+        function downloadPDF() {
+            const element = document.getElementById('cardContent');
+            html2pdf().from(element).save('Smart_Card.pdf');
         }
     </script>
 </body>

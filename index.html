@@ -1,49 +1,37 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
     <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; background-color: #fdf5e6; margin: 0; padding-bottom: 20px; }
-        .header { background-color: orange; padding: 20px; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .logo { width: 180px; height: 100px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
-        
-        .btn-container { display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
-        .btn { display: block; width: 85%; margin: 8px auto; padding: 15px; background: white; border-radius: 15px; text-decoration: none; color: #333; font-weight: bold; border: 2px solid orange; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn:hover { background: orange; color: white; }
-        
-        /* भौगोलिक विस्तार स्तर विभाग */
-        .level-section { margin-top: 25px; padding: 15px; }
-        .expansion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .expansion-grid .btn { width: 90%; margin: 0; font-size: 0.85rem; padding: 12px 5px; }
-        h3 { background: #333; color: white; padding: 10px; border-radius: 8px; margin: 10px; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="header">
-        <img src="InShot_20260620_172115382.jpg" class="logo" alt="Logo">
-        <h1>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h1>
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl p-6 flex flex-col items-center text-center">
+        
+        <div class="w-32 h-32 mb-6 shadow-lg rounded-full overflow-hidden border-4 border-amber-500">
+            <img src="logo.png" alt="श्री शिवमल्हार लोगो" class="w-full h-full object-cover">
+        </div>
+
+        <h1 class="text-2xl font-bold text-slate-800 mb-2">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h1>
+        
+        <p class="text-amber-700 italic font-bold my-3 text-lg">
+            "धर्मो रक्षति रक्षितः"
+        </p>
+
+        <p class="text-slate-600 mb-8 leading-relaxed">
+            आमच्या अधिकृत डिजिटल प्लॅटफॉर्मवर आपले सहर्ष स्वागत आहे. आम्ही सामाजिक सेवा आणि व्यावसायिक उत्कृष्टतेसाठी कटिबद्ध आहोत.<br>
+            <span class="text-sm text-gray-500 font-semibold italic">Welcome to our official platform. We are dedicated to social service and excellence.</span>
+        </p>
+
+        <div class="w-full">
+            <a href="dashboard.html" class="block w-full bg-purple-700 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-purple-800 transition duration-300">
+                Open (प्रवेश करा)
+            </a>
+        </div>
+
     </div>
 
-    <div class="btn-container">
-        <a href="trust.html" class="btn">विश्वास (Trust)</a>
-        <a href="society.html" class="btn">संस्था (Society)</a>
-        <a href="gramseva.html" class="btn">ग्रामसेवा (Gramseva)</a>
-        <a href="siddhivinayak.html" class="btn">सिद्धिविनायक (Siddhivinayak)</a>
-        <a href="candidate.html" class="btn">उमेदवार (Candidate)</a>
-        <a href="admin.html" class="btn">प्रशासक (Admin)</a>
-
-        <div class="level-section">
-         
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registered!'))
-        .catch(err => console.log('Service Worker registration failed:', err));
-      }
-    </script>
 </body>
 </html>

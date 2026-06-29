@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सार्वजनिक मित्र मंडळ नोंदणी</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div class="max-w-md mx-auto bg-white p-6 rounded-3xl shadow-xl">
+        <h2 class="text-xl font-bold text-center text-purple-800 mb-6">श्री शिवमल्हार स्वराज्य प्रतिष्ठान<br>सार्वजनिक मित्र मंडळ नोंदणी</h2>
+
+        <div class="space-y-3 mb-6">
+            <select class="w-full p-3 border-2 border-purple-500 rounded-xl font-bold bg-purple-50">
+                <option>हिंदुस्थान (National)</option>
+                <option>राज्य (States)</option>
+                <option>जिल्हा (Zilla)</option>
+                <option>तालुका (Taluka)</option>
+                <option>महानगरपालिका (Municipal Corp.)</option>
+                <option>गावचे नाव (Village/City)</option>
+            </select>
+        </div>
+
+        <div class="mb-6">
+            <label class="block font-bold text-purple-900 mb-2">पदाधिकारी निवडा:</label>
+            <div class="grid grid-cols-2 gap-2">
+                <button class="bg-gray-100 p-2 rounded border hover:bg-purple-100">अध्यक्ष</button>
+                <button class="bg-gray-100 p-2 rounded border hover:bg-purple-100">उपाध्यक्ष</button>
+                <button class="bg-gray-100 p-2 rounded border hover:bg-purple-100">सचिव</button>
+                <button class="bg-gray-100 p-2 rounded border hover:bg-purple-100">उपसचिव</button>
+            </div>
+        </div>
+
+        <button onclick="generateDetails()" class="w-full bg-purple-800 text-white p-4 rounded-xl font-bold text-lg hover:bg-purple-900 transition">
+            नोंदणी करा (Register)
+        </button>
+
+        <div id="result" class="mt-6 p-4 bg-yellow-50 rounded-xl hidden border-2 border-yellow-200">
+            <p class="text-sm font-bold">नोंदणी क्रमांक: <span id="reg-no"></span></p>
+            <p class="text-sm">स्मार्ट कार्ड जनरेट केले आहे.</p>
+        </div>
+
+        <a href="index.html" class="mt-6 block text-center text-purple-700 font-bold underline">मुख्य डॅशबोर्ड</a>
+    </div>
+
+    <script>
+        function generateDetails() {
+            // 6 digit number logic
+            const num = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('reg-no').innerText = num;
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

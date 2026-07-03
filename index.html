@@ -3,64 +3,69 @@
 <head>
 <style>
   body {
-    background: linear-gradient(180deg, #FF6600 0%, #FFD700 100%);
-    font-family: 'Arial', sans-serif;
+    background: #0f0f0f; /* गडद काळी थीम */
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     min-height: 100vh;
     padding: 20px;
   }
-  
-  /* मोठा लोगो आकार */
-  .logo-container {
-    margin-top: 50px;
-    margin-bottom: 40px;
+
+  /* लोगो - फुल स्क्रीन ॲटीट्युड */
+  .logo-box {
+    width: 280px;
+    height: 280px;
+    margin-top: 40px;
+    border: 3px solid #ff9933;
+    box-shadow: 0 0 40px rgba(255, 153, 51, 0.5);
+    background-image: url('39352.jpg');
+    background-size: cover;
+    border-radius: 20px; /* आयात आकार */
+    transition: 0.5s;
   }
-  .logo-container img {
-    width: 250px;
-    height: 250px;
-    border-radius: 20px; /* आयात*/
-    border: 6px solid #FFF;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  .logo-box:hover { transform: scale(1.05); }
+
+  /* बटण - तोड डिझाइन */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* दोन कॉलम */
+    gap: 15px;
+    width: 100%;
+    margin-top: 40px;
   }
 
-  /* बटण डिझाइन */
   .btn {
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid #FFD700;
-    padding: 18px;
-    margin: 10px;
-    width: 90%;
-    color: #FFD700;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 12px;
-    cursor: pointer;
+    background: linear-gradient(145deg, #222, #000);
+    border: 1px solid #ff9933;
+    color: white;
+    padding: 20px;
     text-align: center;
-    transition: 0.4s;
-    text-transform: uppercase;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px #000;
   }
   .btn:hover {
-    background: #FFD700;
+    background: #ff9933;
     color: black;
-    box-shadow: 0 0 15px #FFF;
+    border: 1px solid white;
   }
+  .full-width { grid-column: span 2; }
 </style>
 </head>
 <body>
 
-  <div class="logo-container">
-    <img src="श्री शिवमल्हार स्वराज्य प्रतिष्ठान.jpg" alt="शिवमल्हार लोगो">
-  </div>
+  <div class="logo-box"></div>
 
-  <div class="btn">१.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्थापक (Founder)</div>
-  <div class="btn">२.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - ट्रस्ट (Trust)</div>
-  <div class="btn">३.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्था (Society)</div>
-  <div class="btn">४.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - सार्वजनिक मित्र मंडळ</div>
-  <div class="btn">५.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - राजकीय पॅनल (Political Panel)</div>
+  <div class="grid-container">
+    <div class="btn">१. संस्थापक</div>
+    <div class="btn">२. ट्रस्ट</div>
+    <div class="btn">३. संस्था</div>
+    <div class="btn">४. मित्र मंडळ</div>
+    <div class="btn full-width">५. राजकीय पॅनल (विशेष)</div>
+  </div>
 
 </body>
 </html>

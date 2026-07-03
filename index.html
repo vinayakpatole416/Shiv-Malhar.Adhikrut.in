@@ -1,40 +1,44 @@
-<!DOCTYPE html>
-<html lang="mr">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-  body { background: #1a1a1a; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-  
-  /* हेडर लोगो */
-  header { width: 100%; padding: 20px; text-align: center; background: #000; border-bottom: 3px solid #FF9933; }
-  .logo { width: 120px; height: 120px; border-radius: 15px; border: 2px solid #FF9933; }
-  
-  /* बटण ग्रिड */
-  .menu-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; width: 100%; max-width: 500px; }
-  
-  .card { 
-    background: #2d2d2d; border-radius: 20px; padding: 20px; text-align: center; 
-    border: 1px solid #444; transition: 0.3s; cursor: pointer;
-  }
-  .card:active { transform: scale(0.95); background: #FF9933; color: black; }
-  .icon { font-size: 30px; margin-bottom: 10px; display: block; }
-</style>
-</head>
-<body>
-
-  <header>
+<header>
     <img src="श्री शिवमल्हार स्वराज्य प्रतिष्ठान.jpg" class="logo" alt="Logo">
-    <h2 style="margin-top:10px;">श्री शिवमल्हार स्वराज्य प्रतिष्ठान </h2>
-  </header>
+    <h1>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h1>
+</header>
 
-  <div class="menu-container">
-    <div class="card"><span class="icon">👑</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्थापक</div>
-    <div class="card"><span class="icon">🤝</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - ट्रस्ट</div>
-    <div class="card"><span class="icon">🏢</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्था</div>
-    <div class="card"><span class="icon">🎈</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - सार्वजनिक मित्र मंडळ</div>
-    <div class="card" style="grid-column: span 2; background: #FF9933; color: black;"><span class="icon">📢</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - राजकीय पॅनल</div>
-  </div>
+<div class="menu">
 
-</body>
-</html>
+<a href="#" class="btn">
+    <div class="icon">🤝</div>
+    <div class="text">
+        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+        <p>ट्रस्ट</p>
+    </div>
+    <span>➜</span>
+</a>
+
+<a href="#" class="btn">
+    <div class="icon">🏛️</div>
+    <div class="text">
+        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+        <p>संस्था</p>
+    </div>
+    <span>➜</span>
+</a>
+
+<a href="#" class="btn">
+    <div class="icon">🎈</div>
+    <div class="text">
+        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+        <p>सार्वजनिक मित्र मंडळ</p>
+    </div>
+    <span>➜</span>
+</a>
+
+<a href="#" class="btn political">
+    <div class="icon">📢</div>
+    <div class="text">
+        <h3>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h3>
+        <p>राजकीय पॅनल</p>
+    </div>
+    <span>➜</span>
+</a>
+
+</div>

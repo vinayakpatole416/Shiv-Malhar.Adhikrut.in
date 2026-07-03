@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-    <style>
-        body { 
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); 
-            font-family: 'Poppins', sans-serif; 
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; color: white;
-        }
-        .logo-box { width: 100%; max-width: 400px; margin-bottom: 30px; border: 2px solid gold; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px gold; }
-        .logo-box img { width: 100%; display: block; }
-        
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 600px; }
-        
-        .btn-card { 
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
-            padding: 25px; border-radius: 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: 0.4s; cursor: pointer; font-weight: bold; text-transform: uppercase;
-        }
-        .btn-card:hover { 
-            background: gold; color: black; transform: scale(1.08); box-shadow: 0 0 30px gold;
-        }
-    </style>
+<style>
+  body {
+    background: linear-gradient(135deg, #FF9933, #FFD700); /* भगवा-सोनेरी थीम */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* फुल स्क्रीन लोगो */
+  .logo-container {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .logo-container img {श्री शिवमल्हार स्वराज्य प्रतिष्ठान. jpt
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+
+  /* बटण डिझाइन */
+  .btn {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 30px;
+    margin: 10px;
+    width: 80%;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
 
-    <div class="logo-box">
-        <img src="श्री शिवमल्हार स्वराज्य प्रतिष्ठान.jpt" alt="Logo">
-    </div>
+  <div class="logo-container">
+    <img src="your-logo-url.png" alt="श्री शिवमल्हार स्वराज्य प्रतिष्ठान">
+    <h1 style="color: white; margin-top: 10px;">श्री शिवमल्हार स्वराज्य प्रतिष्ठान</h1>
+  </div>
 
-    <div class="grid">
-        <div class="btn-card">👑<br>स्थापक</div>
-        <div class="btn-card">🏛️<br>ट्रस्ट</div>
-        <div class="btn-card">🏢<br>संस्था</div>
-        <div class="btn-card">🤝<br>सार्वजनिक मित्र मंडळ</div>
-        <div class="btn-card" style="grid-column: span 2;">🗳️<br>राजकीय पॅनल</div>
-    </div>
+  <div class="btn">१.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्थापक (Founder's Desk)</div>
+  <div class="btn">२.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - ट्रस्ट (Trust & Welfare)</div>
+  <div class="btn">३.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्था (Organization)</div>
+  <div class="btn">४.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - सार्वजनिक मित्र मंडळ (Public Forum)</div>
+  <div class="btn">५.श्री शिवमल्हार स्वराज्य प्रतिष्ठान - राजकीय पॅनल (Political Wing)</div>
 
 </body>
 </html>

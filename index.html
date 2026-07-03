@@ -1,70 +1,39 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body {
-    background: #0f0f0f; /* गडद काळी थीम */
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+  body { background: #1a1a1a; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  
+  /* हेडर लोगो */
+  header { width: 100%; padding: 20px; text-align: center; background: #000; border-bottom: 3px solid #FF9933; }
+  .logo { width: 120px; height: 120px; border-radius: 15px; border: 2px solid #FF9933; }
+  
+  /* बटण ग्रिड */
+  .menu-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; width: 100%; max-width: 500px; }
+  
+  .card { 
+    background: #2d2d2d; border-radius: 20px; padding: 20px; text-align: center; 
+    border: 1px solid #444; transition: 0.3s; cursor: pointer;
   }
-
-  /* लोगो - फुल स्क्रीन ॲटीट्युड */
-  .logo-box {
-    width: 280px;
-    height: 280px;
-    margin-top: 40px;
-    border: 3px solid #ff9933;
-    box-shadow: 0 0 40px rgba(255, 153, 51, 0.5);
-    background-image: url('39352.jpg');
-    background-size: cover;
-    border-radius: 20px; /* आयात आकार */
-    transition: 0.5s;
-  }
-  .logo-box:hover { transform: scale(1.05); }
-
-  /* बटण - तोड डिझाइन */
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* दोन कॉलम */
-    gap: 15px;
-    width: 100%;
-    margin-top: 40px;
-  }
-
-  .btn {
-    background: linear-gradient(145deg, #222, #000);
-    border: 1px solid #ff9933;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 5px 5px 15px #000;
-  }
-  .btn:hover {
-    background: #ff9933;
-    color: black;
-    border: 1px solid white;
-  }
-  .full-width { grid-column: span 2; }
+  .card:active { transform: scale(0.95); background: #FF9933; color: black; }
+  .icon { font-size: 30px; margin-bottom: 10px; display: block; }
 </style>
 </head>
 <body>
 
-  <div class="logo-box"></div>
+  <header>
+    <img src="श्री शिवमल्हार स्वराज्य प्रतिष्ठान.jpg" class="logo" alt="Logo">
+    <h2 style="margin-top:10px;">श्री शिवमल्हार स्वराज्य प्रतिष्ठान </h2>
+  </header>
 
-  <div class="grid-container">
-    <div class="btn">१. संस्थापक</div>
-    <div class="btn">२. ट्रस्ट</div>
-    <div class="btn">३. संस्था</div>
-    <div class="btn">४. मित्र मंडळ</div>
-    <div class="btn full-width">५. राजकीय पॅनल (विशेष)</div>
+  <div class="menu-container">
+    <div class="card"><span class="icon">👑</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्थापक</div>
+    <div class="card"><span class="icon">🤝</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - ट्रस्ट</div>
+    <div class="card"><span class="icon">🏢</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्था</div>
+    <div class="card"><span class="icon">🎈</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - सार्वजनिक मित्र मंडळ</div>
+    <div class="card" style="grid-column: span 2; background: #FF9933; color: black;"><span class="icon">📢</span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - राजकीय पॅनल</div>
   </div>
 
 </body>

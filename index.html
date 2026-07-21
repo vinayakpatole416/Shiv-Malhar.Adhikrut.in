@@ -1,111 +1,110 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - अधिकृत ॲप</title>
+    <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</title>
     <style>
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans Devanagari', sans-serif; /* मराठी फॉन्टसाठी उत्तम */
         }
 
         body {
-            background-color: #0b0b0b;
-            color: #ffffff;
+            background-color: #f4f4f4; /* हलकी ग्रे पार्श्वभूमी */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* Mobile App Frame Container */
+        /* Mobile App Frame */
         .app-container {
             width: 100%;
             max-width: 480px;
-            background: #121212;
+            background: #ffffff;
             min-height: 100vh;
-            box-shadow: 0 0 25px rgba(255, 153, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-            border-left: 2px solid #222;
-            border-right: 2px solid #222;
+            overflow: hidden;
         }
 
-        /* 1. Logo Big Size Rectangular */
+        /* 1. NEW THEME: Logo Header (Royal Saffron Theme) */
         .logo-section {
             width: 100%;
-            padding: 25px 20px;
-            background: linear-gradient(135deg, #1a1a1a, #000000);
-            text-align: center;
-            border-bottom: 3px solid #ff9900;
-        }
-
-        .rectangular-logo {
-            width: 100%;
-            height: 130px;
-            border: 2px dashed #ff9900;
-            border-radius: 12px;
-            background: #181818;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #ff9900 0%, #e68a00 100%); /* भगवा ग्रेडियंट */
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: #ff9900;
-            font-weight: bold;
-            font-size: 15px;
-            box-shadow: inset 0 0 10px rgba(255, 153, 0, 0.2);
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
         }
 
-        /* Menu Section Buttons */
+        .rectangular-logo-img {
+            width: 90%; /* लोगोची रुंदी */
+            max-height: 150px; /* लोगोची जास्तीत जास्त उंची */
+            object-fit: contain; /* लोगोचा आकार राखण्यासाठी */
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        }
+
+        /* Menu Section - New Style */
         .menu-section {
-            padding: 25px 20px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            flex-grow: 1;
+            gap: 20px;
+            background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png'); /* हलका पॅटर्न */
         }
 
         .app-btn {
-            background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
-            color: #ffffff;
-            border: 2px solid #ff9900;
-            padding: 18px 22px;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: bold;
+            background: #ffffff;
+            color: #333333;
+            border: none;
+            padding: 20px 25px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700; /* ठळक अक्षरे */
             text-align: left;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
             text-decoration: none;
+            border: 1px solid #e0e0e0;
         }
 
+        /* Button Hover Effect */
         .app-btn:hover {
-            background: #ff9900;
-            color: #000000;
+            background: #fff3e0; /* माऊस नेल्यावर हलका पिवळा रंग */
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 153, 0, 0.2);
+            border-color: #ff9900;
         }
 
+        /* Icons on Buttons (Using Emojis for simplicity) */
         .btn-icon {
-            font-size: 22px;
+            font-size: 28px;
         }
 
-        /* Footer Section */
+        /* Footer - Updated */
         .app-footer {
             text-align: center;
-            padding: 15px;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #222;
-            background: #0d0d0d;
+            padding: 20px;
+            font-size: 14px;
+            color: #777777;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            font-weight: 500;
         }
+
+        /* Responsive Font Loading */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
     </style>
 </head>
 <body>
@@ -113,9 +112,7 @@
     <div class="app-container">
         
         <div class="logo-section">
-            <div class="rectangular-logo">
-                [ येथे तुमचा मोठा आयताकृती लोगो येईल ]
-            </div>
+            <img src="श्री शिवमल्हार स्वराज्य प्रतिष्ठान.jpg" alt="श्री शिवमल्हार स्वराज्य प्रतिष्ठान लोगो" class="rectangular-logo-img">
         </div>
 
         <div class="menu-section">
@@ -126,7 +123,7 @@
             </a>
 
             <a href="#sanstha" class="app-btn">
-                <span class="btn-icon">📚</span>
+                <span class="btn-icon">🏢</span>
                 <span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - संस्था</span>
             </a>
 
@@ -136,14 +133,14 @@
             </a>
 
             <a href="#founder" class="app-btn">
-                <span class="btn-icon">⭐</span>
+                <span class="btn-icon">🔶</span>
                 <span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - स्थापक/अध्यक्ष</span>
             </a>
 
         </div>
 
         <div class="app-footer">
-            महाराष्ट्र शासन मान्यताप्राप्त / ३६ जिल्हे व ३५८ तालुके
+            समर्पित समाजकार्य | महाराष्ट्र राज्य
         </div>
 
     </div>

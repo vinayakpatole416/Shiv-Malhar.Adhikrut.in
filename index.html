@@ -5,23 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>श्री शिवमल्हार स्वराज्य प्रतिष्ठान</title>
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Noto Sans Devanagari', sans-serif; /* मराठी फॉन्टसाठी उत्तम */
+            font-family: 'Noto Sans Devanagari', sans-serif;
         }
 
         body {
-            background-color: #f4f4f4; /* हलकी ग्रे पार्श्वभूमी */
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* Mobile App Frame */
         .app-container {
             width: 100%;
             max-width: 480px;
@@ -33,11 +31,10 @@
             overflow: hidden;
         }
 
-        /* 1. NEW THEME: Logo Header (Royal Saffron Theme) */
         .logo-section {
             width: 100%;
             padding: 30px 20px;
-            background: linear-gradient(180deg, #ff9900 0%, #e68a00 100%); /* भगवा ग्रेडियंट */
+            background: linear-gradient(180deg, #ff9900 0%, #e68a00 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,29 +42,27 @@
         }
 
         .rectangular-logo-img {
-            width: 90%; /* लोगोची रुंदी */
-            max-height: 150px; /* लोगोची जास्तीत जास्त उंची */
-            object-fit: contain; /* लोगोचा आकार राखण्यासाठी */
+            width: 90%;
+            max-height: 150px;
+            object-fit: contain;
             filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
         }
 
-        /* Menu Section - New Style */
         .menu-section {
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png'); /* हलका पॅटर्न */
         }
 
         .app-btn {
             background: #ffffff;
             color: #333333;
-            border: none;
+            border: 1px solid #e0e0e0;
             padding: 20px 25px;
             border-radius: 15px;
             font-size: 18px;
-            font-weight: 700; /* ठळक अक्षरे */
+            font-weight: 700;
             text-align: left;
             cursor: pointer;
             display: flex;
@@ -76,23 +71,19 @@
             transition: all 0.3s ease;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
             text-decoration: none;
-            border: 1px solid #e0e0e0;
         }
 
-        /* Button Hover Effect */
         .app-btn:hover {
-            background: #fff3e0; /* माऊस नेल्यावर हलका पिवळा रंग */
+            background: #fff3e0;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 153, 0, 0.2);
             border-color: #ff9900;
         }
 
-        /* Icons on Buttons (Using Emojis for simplicity) */
         .btn-icon {
             font-size: 28px;
         }
 
-        /* Footer - Updated */
         .app-footer {
             text-align: center;
             padding: 20px;
@@ -103,7 +94,6 @@
             font-weight: 500;
         }
 
-        /* Responsive Font Loading */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
     </style>
 </head>
@@ -116,23 +106,21 @@
         </div>
 
         <div class="menu-section">
-
-
-            <a href="#mitra-mandal" class="app-btn">
+            <a href="mitra-mandal.html" class="app-btn">
                 <span class="btn-icon">🛕</span>
                 <span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - सार्वजनिक मित्र मंडळ</span>
             </a>
 
-            <a href="#founder" class="app-btn">
+            <a href="adhyaksh.html" class="app-btn">
                 <span class="btn-icon">🙋🏻</span>
                 <span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - स्थापक/अध्यक्ष</span>
             </a>
 
-            <a href="#rajkiy-panel.html" class="app-btn">
+            <!-- राजकीय पॅनल बटण -->
+            <a href="rajkiy-panel.html" class="app-btn">
                 <span class="btn-icon">🇮🇳</span>
                 <span>श्री शिवमल्हार स्वराज्य प्रतिष्ठान - राजकीय पॅनल</span>
             </a>
-            
         </div>
 
         <div class="app-footer">

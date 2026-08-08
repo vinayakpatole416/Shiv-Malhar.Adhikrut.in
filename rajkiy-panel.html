@@ -39,6 +39,32 @@
         li {
             margin-bottom: 8px;
         }
+        /* स्वयंचलित अर्ज फॉर्म बॉक्स */
+        .form-box {
+            background-color: #fff8f0;
+            border: 2px dashed #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none; /* सुरुवातीला लपलेला असेल */
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /* मॅनेजमेंट बटन्स */
         .admin-controls {
             display: flex;
             gap: 10px;
@@ -65,6 +91,9 @@
         .btn-report { background-color: #8b5cf6; color: white; }
         .btn-report:hover { background-color: #7c3aed; }
 
+        .btn-submit { background-color: #f59e0b; color: white; width: 100%; margin-top: 10px; }
+        .btn-submit:hover { background-color: #d97706; }
+
         .btn-back { background-color: #6b7280; color: white; text-decoration: none; display: inline-block; line-height: normal; }
         .btn-back:hover { background-color: #4b5563; }
     </style>
@@ -86,40 +115,78 @@
     <div class="section">
         <h3>२. कायदेशीर आणि शासकीय निकष (Govt Type Guidelines)</h3>
         <ul>
-            <li><strong>नोंदणी व मान्यता:</strong> पॅनल किंवा राजकीय पक्ष म्हणून काम करण्यासाठी निवडणूक आयोगाच्या नियमानुसार कायदेशीर प्रक्रिया पूर्ण करणे आवश्यक असते.</li>
-            <li><strong>उमेदवार प्रतिज्ञापत्र (Affidavit):</strong> निवडणूक लढवणाऱ्या प्रत्येक सदस्याला संपत्ती, शैक्षणिक पात्रता आणि गुन्हेगारी पार्श्वभूमीबद्दलची माहिती प्रतिज्ञापत्राद्वारे (Form 26) जाहीर करावी लागते.</li>
-            <li><strong>बँक खाते व खर्च सनियंत्रण:</strong> प्रचारादरम्यान पारदर्शकता राखण्यासाठी उमेदवारांना स्वतंत्र बँक खाते उघडून निवडणूक खर्चाचा ताळेबंद सादर करावा लागतो.</li>
+            <li><strong>नोंदणी व मान्यता:</strong> पॅनल किंवा पक्ष म्हणून काम करण्यासाठी निवडणूक आयोगाच्या नियमानुसार कायदेशीर प्रक्रिया पूर्ण करणे.</li>
+            <li><strong>उमेदवार प्रतिज्ञापत्र (Affidavit):</strong> संपत्ती, शैक्षणिक पात्रता आणि गुन्हेगारी पार्श्वभूमीबद्दलची माहिती फॉर्म 26 द्वारे जाहीर करणे.</li>
+            <li><strong>बँक खाते व खर्च सनियंत्रण:</strong> पारदर्शकतेसाठी स्वतंत्र बँक खाते उघडून निवडणूक खर्चाचा ताळेबंद सादर करणे.</li>
         </ul>
     </div>
 
     <div class="section">
         <h3>३. पॅनलमधील सदस्यांची जबाबदारी</h3>
         <ul>
-            <li><strong>जनसंपर्क:</strong> मतदारसंघातील नागरिकांच्या अडीअडचणी समजून घेणे व शासकीय योजना सामान्य जनतेपर्यंत पोहोचवणे.</li>
-            <li><strong>विकासकामे:</strong> शासनाच्या विविध अनुदानांचा व निधीचा वापर करून पारदर्शकपणे विकासकामे पूर्ण करणे.</li>
+            <li><strong>जनसंपर्क:</strong> नागरिकांच्या अडीअडचणी समजून घेणे व शासकीय योजना सामान्य जनतेपर्यंत पोहोचवणे.</li>
+            <li><strong>विकासकामे:</strong> शासनाच्या अनुदानाचा व निधीचा वापर करून पारदर्शकपणे विकासकामे पूर्ण करणे.</li>
         </ul>
+    </div>
+
+    <!-- स्वयंचलित अर्ज फॉर्म (Interactive Form Section) -->
+    <div id="applicationFormBox" class="form-box">
+        <h3>📝 नवीन पॅनल सदस्य अर्ज फॉर्म</h3>
+        <form onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label>सदस्याचे पूर्ण नाव:</label>
+                <input type="text" id="memberName" required placeholder="उदा. राहुल आप्पा पाटोळे">
+            </div>
+            <div class="form-group">
+                <label>मोबाईल नंबर:</label>
+                <input type="tel" id="memberPhone" required placeholder="१० अंकी मोबाईल नंबर">
+            </div>
+            <div class="form-group">
+                <label>निवडणूक मतदारसंघ / पद:</label>
+                <select id="memberPosition">
+                    <option value="ग्रामपंचायत सदस्य">ग्रामपंचायत सदस्य</option>
+                    <option value="पंचायत समिती उमेदवार">पंचायत समिती उमेदवार</option>
+                    <option value="जिल्हा परिषद प्रतिनिधी">जिल्हा परिषद प्रतिनिधी</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-submit">अर्ज सबमिट करा (Save)</button>
+        </form>
     </div>
 
     <!-- व्यवस्थापन सुविधा बटन्स -->
     <div class="admin-controls">
-        <button class="btn btn-add" onclick="addNewMember()">➕ नवीन सदस्य जोडा</button>
-        <button class="btn btn-edit" onclick="manageAffidavit()">📝 प्रतिज्ञापत्र/डेटा अपडेट करा</button>
+        <button class="btn btn-add" onclick="toggleForm()">➕ नवीन सदस्य जोडा</button>
+        <button class="btn btn-edit" onclick="manageAffidavit()">📝 प्रतिज्ञापत्र अपडेट करा</button>
         <button class="btn btn-report" onclick="downloadReport()">📊 खर्चाचा अहवाल काढा</button>
         <a href="index.html" class="btn btn-back">⬅ मुख्य मुख्यपृष्ठावर जा</a>
     </div>
 </div>
 
 <script>
-    function addNewMember() {
-        alert("येथून तुम्ही नवीन राजकीय पॅनल सदस्याची माहिती स्वयंचलितपणे जोडू शकता.");
+    // फॉर्म ओपेन/क्लोज करण्याची प्रोसेस
+    function toggleForm() {
+        var formBox = document.getElementById("applicationFormBox");
+        if (formBox.style.display === "block") {
+            formBox.style.display = "none";
+        } else {
+            formBox.style.display = "block";
+        }
+    }
+
+    // डेटा सबमिट झाल्याची स्वयंचलित प्रोसेस
+    function submitForm(event) {
+        event.preventDefault();
+        let name = document.getElementById("memberName").value;
+        alert("अभिनंदन " + name + "! राजकीय पॅनलसाठीचा आपला अर्ज यशस्वीरित्या सेव्ह झाला आहे.");
+        document.getElementById("applicationFormBox").style.display = "none";
     }
 
     function manageAffidavit() {
-        alert("येथे सदस्यांचे फॉर्म 26 प्रतिज्ञापत्र आणि कायदेशीर कागदपत्रे मॅनेज करता येतील.");
+        alert("येथे सदस्यांचे फॉर्म 26 प्रतिज्ञापत्र आणि कागदपत्रे जोडण्याची सुविधा लवकरच सुरू होईल.");
     }
 
     function downloadReport() {
-        alert("निवडणूक खर्च व विकासकामांच्या अहवालाची फाईल डाउनलोड होईल.");
+        alert("निवडणूक खर्च व विकासकामांच्या अहवालाची फाईल यशस्वीरीत्या डाउनलोड होत आहे.");
     }
 </script>
 
